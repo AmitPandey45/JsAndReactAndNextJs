@@ -1,3 +1,4 @@
-/internalapp-osl/node_modules
-/internalapp/build
-/internalapp-osl/package-lock.json
+**/node_modules/
+**/build/
+**/package-lock.json
+**/.next
