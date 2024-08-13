@@ -2,3 +2,5 @@
 **/build/
 **/package-lock.json
 **/.next
+/Next-First-App/node_modules
+/Next-First-App/.next
