@@ -1,0 +1,66 @@
+[2:17 PM] Venky (Guest)
+Route Groups:
+ 
+    (auth)
+
+      - login
+
+             - page.js
+
+      - logout 
+
+              - page.js
+ 
+------------------
+ 
+Dynamic Routes: []
+ 
+   players/[id]/page.js
+ 
+players/1        {id: '1'}
+
+players/2        {id: '2'}
+
+players/3        {id: '3'}
+
+--------------------------------
+
+catch all segments: [...slug]
+
+------------------
+ 
+app/shop/[...slug]                 /shop/a             {slug: ['a']}
+
+app/shop/[...slug]                 /shop/a/b             {slug: ['a', 'b']}
+
+app/shop/[...slug]                 /shop/a/b/c            {slug: ['a','b','c']}
+ 
+--------------------------------------------
+ 
+Optional Catch-all Segments:[[...foldername ]]
+ 
+app/shop/[[...slug]]             /shop         {}
+
+app/shop/[[...slug]]             /shop/a         {slug: ['a']}
+
+app/shop/[[...slug]]             /shop/a/b        {slug: ['a', 'b']}
+
+				 /shop/a/b/c      {slug: ['a','b','c']}
+
+
+
+>   npx create-next-app@latest
+       proj name etc....
+>   cd proj-name
+>   npm run dev
+------------------------------
+  app/api/route.js
+----------------------------------
+ 
+import { NextResponse } from "next/server";
+ 
+export async function GET(){
+    return NextResponse.json({message: "GET"})
+}
+-----------------------------
+http://localhost:3000/api

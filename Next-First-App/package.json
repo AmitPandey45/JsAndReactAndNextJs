@@ -1,0 +1,20 @@
+{
+  "name": "Next-First-App",
+  "version": "1.0.0",
+  "description": "next Steps:\r create package.json file\r 1) npm init --yes\r 2) dependencies\r > npm install react react-dom next\r 3) create app folder\r app/page.jsx\r -------------------\r export default function Home() {\r   return (\r <div>Home</div>\r   )\r }\r 4) run app\r >  npx next dev\r http://localhost:3000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

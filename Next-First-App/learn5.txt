@@ -1,0 +1,87 @@
+npx create-next-app@latest
+ 
+npm i -D prisma
+ 
+npx prisma init --datasource-provider postgresql
+ 
+in package.json file:
+ 
+"scripts": {
+    // other scripts
+    "generate:prisma": "prisma generate",
+    // other scripts
+}
+----------------
+.env file:
+----------------
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/next13
+ 
+in schema.prisma file:
+---------------------
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Book {
+  id           Int      @id @default(autoincrement())
+  name         String
+  price        Float
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+----------------------------
+npx prisma migrate dev --name init
+ 
+npm run generate:prisma
+ 
+---------------
+create seed.ts file under prisma
+---------------------------------
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+ 
+async function main() {
+  await prisma.book.createMany({
+    data: [
+      {
+        name: "Next In Action",
+        price: 400
+      },
+      {
+        name: "Only Next",
+        price: 555,
+       },
+      {
+        name: "Simply Next",
+        price: 777,
+       },
+    ],
+  });
+}
+ 
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
+ 
+---------------------------------
+in package.json file add below
+----------------------------------
+"prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"}  prisma/seed.ts"
+  }
+-----------------------------------
+ 
+npm install -D @types/node
+ 
+npm i ts-node
+npx prisma db seed
